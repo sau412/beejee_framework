@@ -14,10 +14,15 @@ class settings {
 
 	// Настройки роутинга
 	public static $routing_rules = array(
-		array("regexp"=>'/\\/view\\/([0-9]+)$/', "controller"=>"tasks_view"),
-		array("regexp"=>'/\\/edit\\/([0-9]+)$/', "controller"=>"tasks_edit"),
-		array("regexp"=>'/\\/add$/', "controller"=>"tasks_add"),
-		array("regexp"=>'/\\/list$/', "controller"=>"tasks_list"),
+		array("regexp"=>'/\\/view\\/([0-9]+)\\/?$/',        "controller"=>"tasks_view"),
+		array("regexp"=>'/\\/edit\\/([0-9]+)\\/?$/',        "controller"=>"tasks_edit"),
+		array("regexp"=>'/\\/add\\/?$/',                    "controller"=>"tasks_add"),
+		array("regexp"=>'/\\/list\\/?$/',                   "controller"=>"tasks_list"),
+		array("regexp"=>'/\\/list\\/([a-z]+)\\/?$/',         "controller"=>"tasks_list"),
+		array("regexp"=>'/\\/list\\/([a-z]+)\\/([0-9]+)\\/?$/', "controller"=>"tasks_list"),
 	);
+
+	// Пагинация
+	public static $records_per_page = 3;
 }
 ?>

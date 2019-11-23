@@ -27,11 +27,14 @@ class controller {
 	}
 
 	// Контроллер просмотра задач
-	public function tasks_list($uri) {
+	public function tasks_list($uri, $order = 'id', $page = 1) {
 		echo "Called controller: tasks_list\n";
 		$view = new view();
-		$form_data['action'] = "add";
-		$view->view_from_template("tasks_add", $form_data);
+		$model = new task();
+		$model->set_current_page($page);
+		$model->set_sorting_order($order);
+		$data = array("order"=>$order,"limit"=>$limit,"offset"=>$offset,"page"=>$page);
+		$view->view_from_template("tasks_list", $data);
 	}
 
 	// Контроллер добавления задачи
