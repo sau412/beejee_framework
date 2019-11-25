@@ -28,13 +28,14 @@ class controller {
 
 	// Контроллер просмотра задач
 	public function tasks_list($uri, $order = 'id', $page = 1) {
-		echo "Called controller: tasks_list\n";
+		echo "Called controller: tasks_list order $order page $page\n";
 		$view = new view();
-		$model = new task();
+		$model = new task_list();
 		$model->set_current_page($page);
 		$model->set_sorting_order($order);
-		$data = array("order"=>$order,"limit"=>$limit,"offset"=>$offset,"page"=>$page);
-		$view->view_from_template("tasks_list", $data);
+		$model->load();
+		//$data = array("order"=>$order,"limit"=>$limit,"offset"=>$offset,"page"=>$page);
+		$view->view_from_template("tasks_list", array("model"=>$model));
 	}
 
 	// Контроллер добавления задачи
